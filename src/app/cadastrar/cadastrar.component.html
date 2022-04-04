@@ -1,0 +1,39 @@
+
+<div class="countainer-fluid">
+
+    <div class="row">
+        <div class="col-md-6" id="img-bg">
+
+        </div>
+        <div class="row d-flex col-md-6 mt-5 mb-5">
+            <div class=" col-md-10">
+                <h1 class="text-center">Cadastro</h1>
+                <div class="form-group ">
+                    <label for="nome">Nome </label> <br>
+                    <input [(ngModel)]="User.nome" type="form-control" type="text" name="nome" id="nome" placeholder="Seu nome" ><br>
+                    <label for="email">Email </label> <br>
+                    <input [(ngModel)]="User.usuario" type="form-control" type="text" name="email" id="email" placeholder="Seu email"><br>
+                    <label for="linkfoto">Link foto </label> <br>
+                    <input [(ngModel)]="User.foto"type="form-control" type="text" name="Linkf" id="Linkf" placeholder="Url da sua foto"><br>
+                    <label for="senha">Senha </label> <br>
+                    <input (input)="confirmsenha($event)"  type="form-control" type="password" name="senha" id="senha" placeholder="Senha"><br>
+                    <label [(ngModel)]="User.senha" for="senha">Confirmar senha </label> <br>
+                    <input  type="form-control" type="password" name="senha2" id="senha2" placeholder="Mesma senha"><br>
+                </div>
+
+             <br>
+                <div class="d-flex justify-content-center">
+                  
+                    <button  type="submit" class="cadbtn1" (click)="cadastrar">Continuar</button>
+
+                    <button  type="submit" class="cadbtn2" routerLink="/entrar">Cancelar</button>
+               
+                </div>
+                
+            
+            </div>
+            
+        </div>
+
+    </div>
+</div>

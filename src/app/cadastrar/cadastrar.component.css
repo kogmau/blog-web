@@ -1,0 +1,19 @@
+#img-bg {
+    background-image: url('https://i.pinimg.com/originals/93/8d/09/938d09d85f343932c54119bce8e0913d.jpg');
+    min-height: 695px;
+    background-position: center;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cadbtn1{
+    background-color: rgb(162, 12, 12);
+    color: antiquewhite;
+    margin: 10px;
+}
+.cadbtn2{
+    background-color: rgb(162, 12, 12);
+    color: antiquewhite;
+    margin: 10px;
+}
