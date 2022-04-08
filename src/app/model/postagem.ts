@@ -1,20 +1,19 @@
-import { tema } from "./tema"
-import { User } from "./User"
+import { Tema } from "./Tema";
+import { Usuario } from "./Usuario";
 
-export class postagem{
+export class Postagem{
 
-    public id: number
+public id: number;
 
-    public titulo: string
+public titulo: string;
 
-    public texto: string
+public texto: string;
 
-    public tema: tema
+public data: Date;
 
-    public data: Date
+public usuario: Usuario;
 
-    public usuario: User
-
-    public postagem: postagem
-
+public tema: Tema;
 }
+
+//  "strictPropertyInitialization": false, =----- embaixo do strict tsconfig.json

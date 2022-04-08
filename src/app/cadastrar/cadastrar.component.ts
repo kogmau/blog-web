@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../model/User';
-import { userLogin } from '../model/userLogin';
+import { Usuario } from '../model/Usuario';
+import { AlertasService } from '../service/alertas.service';
+
 import { AuthService } from '../service/auth.service';
-
-
 
 @Component({
   selector: 'app-cadastrar',
@@ -12,42 +11,48 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./cadastrar.component.css']
 })
 export class CadastrarComponent implements OnInit {
-
-  User: User = new User
-  userLogin: userLogin = new userLogin
+  
  
-  confirmarSenha: string
-  tipoUsuario: string;
+  usuario: Usuario = new Usuario();
+
+  confirmarSenha:string;
+  tipoUsuario:string;
 
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private alertas: AlertasService
   ) { }
 
-  ngOnInit() {
-    window.scroll(0,0)
+  ngOnInit(): void {
+  window.scroll(0,0);
   }
-
-  confirmsenha(event: any){   //criando evento para receber as senhas
-this.confirmarSenha = event.target.value //chamando o confirmar senha
-  }
-
-  cadastrar() {
-
-    if (this.User.senha != this.confirmarSenha ) {
-      alert("Suas senhas precisam ser iguais!");
-    }
-    else { //vai sobrecrever a senha em formato json para o backend receber
-      this.authService.Cadastrar(this.User).subscribe((resp:User) => {
-        this.User = resp
-        this.router.navigate(['/login'])
-        alert("Você foi cadastrado com sucesso! Bem vindo!")
-      });
-
-    }
-  }
-
-
-}
   
+
+
+tipoUser(event: any){
+  this.tipoUsuario=event.target.value
+}
+
+confirmeSenha(event:any){
+this.confirmarSenha=event.target.value
+}
+
+cadastrarUsuario() {
+
+
+  if (this.confirmarSenha === this.usuario.senha) {
+
+this.usuario.tipo=this.tipoUsuario;
+
+    this.authService.Cadastrar(this.usuario).subscribe((resp: Usuario) => {
+      this.usuario = resp;
+      this.router.navigate(['/entrar']);
+      this.alertas.showAlertSuccess('Usuário cadastrado com sucesso!');
+    });
+  } else {
+    this.alertas.showAlertDanger('As senha não estão iguais.');
+  }
+}
+}

@@ -1,33 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">will blog</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll"
-    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarScroll">
-    <ul class="navbar-nav mr-auto my-2 d-flex aling-items-center navbar-nav-scroll" style="max-height: 50px;">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Sobre mim</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-toggle="dropdown"
-          aria-expanded="false">
-          Entrar
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-          <li><a class="dropdown-item" href="#">Login</a></li>
-          <li><a class="dropdown-item" href="#">Cadastro</a></li>
+<nav class="navbar navbar-expand-lg navbar-light bgcor">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto d-flex align-items-center fs-16">
+            <li class="nav-item active">
+                <img src="{{foto}}" width="50" class="img-fluid rounded-pill" alt="">
+            </li>
+            <li class="nav-item pl-3">
+                <a class="m-0 font-weight-bold text-white" href="#">{{nome}}</a>
+            </li>
+            <li class="nav-item pl-3">
+                <a *ngIf="auth.adm()" routerLink="/usuarios">
+                    <p class="m-0 text-white"><i class="fa fa-users" aria-hidden="true"></i></p>
+                </a>
+            </li>
         </ul>
-      </li>
 
-    </ul>
 
-    <ul class="navbar-nav ml-auto my-2 d-flex aling-items-center">
-      <li><a class="m-0 font-weight-bold text-orange fs-16" href="">
-          <i class="fa-solid fa-arrow-right-from-arc"></i> sair</a></li>
-    </ul>
-  </div>
+        <ul class="navbar-nav ml-auto d-flex align-items-center text-white fs-16">
+            <li class="nav-item pl-3">
+                <a (click)="sair()" class="text-white" href="">Sair<i class="fa fa-sign-out" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+
+    </div>
 </nav>

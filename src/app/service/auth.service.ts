@@ -1,32 +1,88 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { userLogin } from '../model/userLogin';
-import { User } from '../model/User';
+import { environment } from 'src/environments/environment.prod';
+import { Usuario } from '../model/Usuario';
+import { UsuarioLogin } from '../model/UsuarioLogin';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(
-  private http: HttpClient) 
-  {}
+  // importar la no app.module.ts
+  constructor(private http: HttpClient) {
+
+  }
+
+  token={
+    headers:new HttpHeaders().set('Authorization',environment.token)
+  }
   
-  
-  entrar(userLogin: userLogin): Observable<userLogin> {
-    return this.http.post<userLogin>('http://localhost:8080/usuario/login', userLogin)
+
+  Entrar(usuarioLogin: UsuarioLogin): Observable<UsuarioLogin> {
+    return this.http.post<UsuarioLogin>('http://localhost:8080/usuario/login', usuarioLogin);
+  }
+
+
+
+  Cadastrar(usuario: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>('http://localhost:8080/usuario/cadastrar', usuario);
 
   }
 
 
-  
-
- 
-  Cadastrar(user: User): Observable<User> { //referencia model usuario
-
-    return this.http.post<User>('http://localhost:8080/usuario/cadastrar', user);
 
 
+  alterarPerfil(usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>('https://blogpessoalmiguel.herokuapp.com/usuarios/atualizar', usuario);
+  }
+
+
+ getByIdUser(id:number):Observable<Usuario>{
+   return this.http.get<Usuario>(`https://blogpessoalmiguel.herokuapp.com/usuarios/${id}`)
+ }
+
+
+ getAllUsers(): Observable<Usuario[]> {
+  return this.http.get<Usuario[]>('https://blogpessoalmiguel.herokuapp.com/usuarios/all');
 }
+
+
+
+
+ deleteUser(id:number){
+  return this.http.delete<Usuario>(`https://blogpessoalmiguel.herokuapp.com/usuarios/${id}`)
+ 
+ }
+
+
+
+  logado() {
+    let ok: boolean = false;
+
+
+    if (environment.token != '') {
+      ok = true;
+    }
+
+    return ok;
+  }
+
+
+
+
+
+  adm() {
+    let ok: boolean = false;
+
+
+    if (environment.tipo == 'adm') {
+      ok = true;
+    }
+
+    return ok;
+  }
+
 }
