@@ -36,24 +36,24 @@ export class AuthService {
 
 
   alterarPerfil(usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>('https://blogpessoalmiguel.herokuapp.com/usuarios/atualizar', usuario);
+    return this.http.put<Usuario>('http://localhost:8080usuarios/atualizar', usuario);
   }
 
 
  getByIdUser(id:number):Observable<Usuario>{
-   return this.http.get<Usuario>(`https://blogpessoalmiguel.herokuapp.com/usuarios/${id}`)
+   return this.http.get<Usuario>(`http://localhost:8080usuarios/${id}`)
  }
 
 
  getAllUsers(): Observable<Usuario[]> {
-  return this.http.get<Usuario[]>('https://blogpessoalmiguel.herokuapp.com/usuarios/all');
+  return this.http.get<Usuario[]>('http://localhost:8080usuarios/all');
 }
 
 
 
 
  deleteUser(id:number){
-  return this.http.delete<Usuario>(`https://blogpessoalmiguel.herokuapp.com/usuarios/${id}`)
+  return this.http.delete<Usuario>(`http://localhost:8080usuarios/${id}`)
  
  }
 
